@@ -1,6 +1,6 @@
 name: Deploy Frontend to GitHub Pages
 env:
-  VITE_API_URL: https://room-asset-v2-api.onrender.com/api
+  VITE_API_URL: https://room-asset-v2-api.onrender.com
   run: npm run build:frontend
 on:
   push:
