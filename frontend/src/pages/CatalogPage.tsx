@@ -1,0 +1,2 @@
+import { useCatalog } from '../hooks/useCatalog'; import { Catalog } from '../components/Catalog'; import { useLayoutContext } from '../components/Layout';
+export function CatalogPage(){const {rooms,assets,loading,error}=useCatalog();const {searchQuery}=useLayoutContext();if(loading)return <div className="loading">Загрузка…</div>;if(error)return <div className="notice notice-error">❌ {error}</div>;return <Catalog rooms={rooms} assets={assets} searchQuery={searchQuery}/>}

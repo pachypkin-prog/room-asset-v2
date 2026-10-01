@@ -1,0 +1,13 @@
+{
+  "rooms": [
+    { "id": "r-101", "name": "Аудитория 101", "capacity": 30, "features": ["projector", "whiteboard"] },
+    { "id": "r-202", "name": "Аудитория 202", "capacity": 60, "features": ["projector", "audio"] }
+  ],
+  "assets": [
+    { "id": "a-proj-1", "name": "Проектор Epson", "inventoryCode": "PRJ001", "status": "available" },
+    { "id": "a-mic-1", "name": "Радиомикрофон", "inventoryCode": "MIC001", "status": "available" }
+  ],
+  "bookings": [
+    { "id": "b-1", "resourceType": "room", "resourceId": "r-101", "title": "Демонстрация проекта", "start": "2026-10-01T08:00:00Z", "end": "2026-10-01T09:30:00Z", "notes": "Пример записи" }
+  ]
+}
