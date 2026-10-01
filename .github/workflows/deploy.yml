@@ -1,11 +1,8 @@
 name: Deploy Frontend to GitHub Pages
-env:
-  VITE_API_URL: https://room-asset-v2-api.onrender.com
-  run: npm run build:frontend
+
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -20,31 +17,27 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      VITE_API_URL: https://room-asset-v2-api.onrender.com
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build frontend
-        run: npm run build:frontend
-
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload frontend
-        uses: actions/upload-pages-artifact@v3
+      - run: npm install
+      - run: npm run build:frontend
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: ./frontend/dist
 
-      - name: Deploy to GitHub Pages
-        id: deployment
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
         uses: actions/deploy-pages@v4
