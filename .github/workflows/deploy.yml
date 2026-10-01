@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      VITE_API_URL: https://room-asset-v2.onrender.com/api
+      VITE_API_URL: https://room-asset-v2.onrender.com
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
